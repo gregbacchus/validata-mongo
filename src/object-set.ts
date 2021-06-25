@@ -139,7 +139,7 @@ class Generic<T extends Record<string, any>> {
 
 export type ObjectOptions<T> = ValidationOptions<T> & AdditionalOptions;
 
-export const isObjectSet = <T extends Record<string, unknown>>(contract?: Contract<T>, options?: ObjectOptions<T>): ValueProcessor<Record<string, unknown>> => {
+export const isObjectSet = <T extends Record<string, any>>(contract?: Contract<T>, options?: ObjectOptions<T>): ValueProcessor<T & Record<string, unknown>> => {
   const generic = new Generic<T>();
   return createIsCheck('object', generic.check, generic.coerce, generic.validate)({ ...options, contract });
 };
