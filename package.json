@@ -1,6 +1,6 @@
 {
   "name": "validata-mongo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MongoDB update `$set` operations",
   "keywords": [
     "typescript",
