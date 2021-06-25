@@ -57,7 +57,7 @@ class Generic<T extends Record<string, any>> {
     return undefined;
   };
 
-  public process = (contract: Contract<T>, target: T, path: Path[]): Result<T> => {
+  public process = (contract: Contract<T>, target: T, path: Path[]): Result<Record<string, unknown>> => {
     const issues: Issue[] = [];
     const output = {} as T;
 
@@ -114,7 +114,7 @@ class Generic<T extends Record<string, any>> {
   public coerce: Coerce<T, CoerceOptions<T>> = (options) => (next) => (value, path) => {
     if (!options) return next(value, path);
 
-    let coerced = { ...value };
+    const coerced = { ...value };
     if (!options.contract) return next(coerced, path);
 
     if (options.stripExtraProperties) {
@@ -128,9 +128,10 @@ class Generic<T extends Record<string, any>> {
     if (isIssue(result)) return result;
 
     if (result) {
-      coerced = result.value;
+      return next(result.value as any, path);
+    } else {
+      return next(coerced, path);
     }
-    return next(coerced, path);
   }
 
   public validate: Validate<T, ValidationOptions<T>> = (value, path, options) => basicValidation(value, path, options);
@@ -138,7 +139,7 @@ class Generic<T extends Record<string, any>> {
 
 export type ObjectOptions<T> = ValidationOptions<T> & AdditionalOptions;
 
-export const isObjectSet = <T extends { [key: string]: any; }>(contract?: Contract<T>, options?: ObjectOptions<T>): ValueProcessor<T> => {
+export const isObjectSet = <T extends Record<string, unknown>>(contract?: Contract<T>, options?: ObjectOptions<T>): ValueProcessor<Record<string, unknown>> => {
   const generic = new Generic<T>();
   return createIsCheck('object', generic.check, generic.coerce, generic.validate)({ ...options, contract });
 };
