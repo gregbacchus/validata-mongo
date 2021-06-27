@@ -13,8 +13,6 @@ npm i validata validata-mongo
 
 ## Basic usage
 
-TODO...
-
 Given interfaces
 
 ```typescript
