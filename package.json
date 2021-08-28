@@ -58,6 +58,6 @@
     "validator": "^13.6.0"
   },
   "dependencies": {
-    "validata": "^4.0.4"
+    "validata": "^4.0.8"
   }
 }
