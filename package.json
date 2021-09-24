@@ -23,7 +23,7 @@
     "mongodb"
   ],
   "main": "./dist/index.js",
-  "types": "./src/index.ts",
+  "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git@github.com:gregbacchus/validata-mongo.git"
@@ -58,6 +58,6 @@
     "validator": "^13.6.0"
   },
   "dependencies": {
-    "validata": "^4.0.9"
+    "validata": "^4.0.13"
   }
 }
