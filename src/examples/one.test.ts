@@ -78,7 +78,7 @@ describe('example one', () => {
       }));
       fail();
     }
-    catch (err) {
+    catch (err: any) {
       console.log(JSON.stringify(err));
       // -> ERROR -> {"issues":[{"path":["wow"],"value":"blue","reason":"unexpected-property"}],"name":"ValidationError"}
       expect({ ...err }).toEqual(expect.objectContaining({
@@ -97,7 +97,7 @@ describe('example one', () => {
       }));
       fail();
     }
-    catch (err) {
+    catch (err: any) {
       console.log(JSON.stringify(err));
       // -> ERROR -> {"issues":[{"path":["child.unexpected"],"value":17,"reason":"unexpected-property"}],"name":"ValidationError"}
       expect({ ...err }).toEqual(expect.objectContaining({
